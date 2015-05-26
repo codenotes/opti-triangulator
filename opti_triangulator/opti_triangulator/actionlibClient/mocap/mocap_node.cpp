@@ -28,6 +28,8 @@ typedef unsigned short ushort; //greg
 
 // ip on multicast group - cannot be changed in Arena
 const std::string MULTICAST_IP = "224.0.0.1";
+//const std::string MULTICAST_IP = "239.255.42.99";
+
 
 const std::string MOCAP_MODEL_KEY = "mocap_model";
 const std::string RIGID_BODIES_KEY = "rigid_bodies";
@@ -65,7 +67,9 @@ void processMocapData( const char** mocap_model, RigidBodyMap& published_rigid_b
     do
     {
       // Receive data from mocap device
+		ROS_INFO("before recv");
       numBytes = multicast_client_socket.recv();
+	  ROS_INFO("after recv");
 
       // Parse mocap data
       if( numBytes > 0 )
