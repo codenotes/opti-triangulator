@@ -26,26 +26,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NodeTemplateUnmanaged.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tf_broadcaster.cpp">
+    <ClCompile Include="SampleToRos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mocap\mocap_config.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mocap\mocap_datapackets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mocap\mocap_node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mocap\socket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\NatNetLib.lib" />
   </ItemGroup>
 </Project>
