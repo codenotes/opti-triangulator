@@ -369,6 +369,21 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 		// 0x01 : bool, rigid body was successfully tracked in this frame
 		bool bTrackingValid = data->RigidBodies[i].params & 0x01;
 
+		//(R)ed is the color for the X - axis.
+		//	(G)reen is the color for the Y - axis.
+		//	(B)lue is the color for the Z - axis.
+
+		/*
+		
+		In motiv, green is verticle.  In ROS green is Y
+		Blue and green are reversed between motiv and rviz
+		there for Y and Z are reversed, which we knew. 
+
+
+		
+		*/
+
+
 		printf("Rigid Body [ID=%d  Error=%3.2f  Valid=%d]\n", data->RigidBodies[i].ID, data->RigidBodies[i].MeanError, bTrackingValid);
 		printf("\tx\ty\tz\tqx\tqy\tqz\tqw\n");
 		printf("\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\n",
@@ -381,14 +396,20 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 			data->RigidBodies[i].qw);
 
 		ps.pose.position.x = data->RigidBodies[i].x;
-		ps.pose.position.z = data->RigidBodies[i].y;
-		ps.pose.position.y = - data->RigidBodies[i].z;
+		ps.pose.position.y = data->RigidBodies[i].y;//height
+		//ps.pose.position.y = - data->RigidBodies[i].z;
+		ps.pose.position.z = data->RigidBodies[i].z;
+		
+		
 		ps.pose.orientation.x = data->RigidBodies[i].qx;
-		ps.pose.orientation.z = data->RigidBodies[i].qy;
-		ps.pose.orientation.y = -data->RigidBodies[i].qz;
+		ps.pose.orientation.y = data->RigidBodies[i].qy;
+		//ps.pose.orientation.y = -data->RigidBodies[i].qz;
+		ps.pose.orientation.z = data->RigidBodies[i].qz;
 		ps.pose.orientation.w = data->RigidBodies[i].qw;
 
 		ps.header.stamp =  ros::Time::now();
+		ps.header.frame_id = "map";
+
 		ROSPubPose->publish(ps);
 		ros::spinOnce();
 
