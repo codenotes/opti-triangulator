@@ -42,12 +42,15 @@ SampleClient [ServerIP] [LocalIP] [OutputFilename]
 #include "include/NatNetClient.h"
 
 #include "posestamped.h"
+#include <map>
 
 #include <ros/ros.h>
 
 #pragma comment(lib,"wsock32")
 
 #pragma warning( disable : 4996 )
+
+std::map<int, std::string> IDtoName;
 
 
 ros::NodeHandle * n;
@@ -147,12 +150,14 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 			else if (pDataDefs->arrDataDescriptions[i].type == Descriptor_RigidBody)
 			{
-				// RigidBody
+				// RigidBody, names and IDs gathered here
 				sRigidBodyDescription* pRB = pDataDefs->arrDataDescriptions[i].Data.RigidBodyDescription;
 				printf("RigidBody Name : %s\n", pRB->szName);
 				printf("RigidBody ID : %d\n", pRB->ID);
 				printf("RigidBody Parent ID : %d\n", pRB->parentID);
 				printf("Parent Offset : %3.2f,%3.2f,%3.2f\n", pRB->offsetx, pRB->offsety, pRB->offsetz);
+				IDtoName[pRB->ID] = pRB->szName;
+
 			}
 			else if (pDataDefs->arrDataDescriptions[i].type == Descriptor_Skeleton)
 			{
@@ -408,7 +413,11 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 		ps.pose.orientation.w = data->RigidBodies[i].qw;
 
 		ps.header.stamp =  ros::Time::now();
-		ps.header.frame_id = "map";
+		
+		//ps.header.frame_id = "map";  
+		ps.header.frame_id = IDtoName[data->RigidBodies[i].ID];
+
+		
 
 		ROSPubPose->publish(ps);
 		ros::spinOnce();
