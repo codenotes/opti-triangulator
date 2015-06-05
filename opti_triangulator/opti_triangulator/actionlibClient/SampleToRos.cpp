@@ -46,15 +46,51 @@ SampleClient [ServerIP] [LocalIP] [OutputFilename]
 
 #include <ros/ros.h>
 
+
+
 #pragma comment(lib,"wsock32")
 
 #pragma warning( disable : 4996 )
 
-std::map<int, std::string> IDtoName;
-
 
 ros::NodeHandle * n;
 ros::Publisher * ROSPubPose;
+
+
+bool gbPublishersCreated = false; 
+
+ class stPub
+{
+public:
+
+	std::string name;
+
+	ros::Publisher publisher;
+	stPub(std::string name_, std::string  topic, int qSize=10)
+	{
+
+
+		publisher = n->advertise<geometry_msgs::PoseStamped>(topic, qSize);
+		name = name_;
+
+
+	}
+
+	stPub()
+	{
+		printf("should not be here!!!!");
+
+	}
+
+
+};
+
+
+std::map<int, std::string> IDtoName;
+std::map<int, stPub*> IDtoPublisher;
+
+
+
 
 void _WriteHeader(FILE* fp, sDataDescriptions* pBodyDefs);
 void _WriteFrame(FILE* fp, sFrameOfMocapData* data);
@@ -156,7 +192,12 @@ int _tmain(int argc, _TCHAR* argv[])
 				printf("RigidBody ID : %d\n", pRB->ID);
 				printf("RigidBody Parent ID : %d\n", pRB->parentID);
 				printf("Parent Offset : %3.2f,%3.2f,%3.2f\n", pRB->offsetx, pRB->offsety, pRB->offsetz);
-				IDtoName[pRB->ID] = pRB->szName;
+//				IDtoName[pRB->ID] = pRB->szName;
+				IDtoPublisher[pRB->ID] = new stPub(pRB->szName, pRB->szName, 10);
+				
+
+				
+
 
 			}
 			else if (pDataDefs->arrDataDescriptions[i].type == Descriptor_Skeleton)
@@ -181,6 +222,8 @@ int _tmain(int argc, _TCHAR* argv[])
 				// Unknown
 			}
 		}
+
+		gbPublishersCreated = true;
 	}
 
 
@@ -414,13 +457,30 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 
 		ps.header.stamp =  ros::Time::now();
 		
-		//ps.header.frame_id = "map";  
-		ps.header.frame_id = IDtoName[data->RigidBodies[i].ID];
+		
+		ps.header.frame_id = "map";
 
 		
 
-		ROSPubPose->publish(ps);
-		ros::spinOnce();
+		//ROSPubPose->publish(ps);
+
+
+		if (n->ok())
+		{
+
+			if (gbPublishersCreated)
+			{
+
+				IDtoPublisher[data->RigidBodies[i].ID]->publisher.publish(ps);
+				
+			}
+
+			
+
+			ros::spinOnce();
+		}
+		else
+			printf("issue...\n");
 
 
 
@@ -578,9 +638,8 @@ void StartROS()
 
 
 	n = new ros::NodeHandle();
-	ROSPubPose = new 	ros::Publisher;
-
-	*ROSPubPose = n->advertise<geometry_msgs::PoseStamped>("OPTI_POS", 100);
+	//ROSPubPose = new 	ros::Publisher;
+	//*ROSPubPose = n->advertise<geometry_msgs::PoseStamped>("OPTI_POS", 100);
 
 	//gbRosInitialized = true;
 	//	ros::Rate loop_rate(10);
