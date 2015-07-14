@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opti_triangulator", "opti_t
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "actionlibClient", "opti_triangulator\actionlibClient\actionlibClient.vcxproj", "{D045E2BB-1996-42CC-983D-72182A0B8532}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "beaconLocationClient", "beaconLocationClient\beaconLocationClient.vcxproj", "{CD73E283-FF44-4A11-96B3-6BD529916925}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,10 @@ Global
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Debug|Win32.Build.0 = Debug|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Release|Win32.ActiveCfg = Release|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Release|Win32.Build.0 = Release|Win32
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Debug|Win32.Build.0 = Debug|Win32
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Release|Win32.ActiveCfg = Release|Win32
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
