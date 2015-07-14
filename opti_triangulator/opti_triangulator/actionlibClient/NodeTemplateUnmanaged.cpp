@@ -39,6 +39,9 @@
 #include "CECommandAction.h"
 #include "actionlib/client/simple_action_client.h"
 #include "actionlib/server/simple_action_server.h"
+
+#include "triangulator/beaconSettings.h"
+
 //const double tf::Transformer::DEFAULT_CACHE_TIME = 10.0;
 #pragma comment(lib, "C:\\Users\\gbrill\\Source\\Repos\\ROSIndigo\\ROSIndigoDLL\\Debug\\ROSIndigoDLL.lib")
 

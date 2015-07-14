@@ -45,7 +45,7 @@ SampleClient [ServerIP] [LocalIP] [OutputFilename]
 #include <map>
 
 #include <ros/ros.h>
-
+#include "triangulator/beaconSettings.h"
 
 
 #pragma comment(lib,"wsock32")
@@ -55,7 +55,7 @@ SampleClient [ServerIP] [LocalIP] [OutputFilename]
 
 ros::NodeHandle * n;
 ros::Publisher * ROSPubPose;
-
+ros::Publisher beaconPublisher;
 
 bool gbPublishersCreated = false; 
 
@@ -192,7 +192,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				printf("RigidBody ID : %d\n", pRB->ID);
 				printf("RigidBody Parent ID : %d\n", pRB->parentID);
 				printf("Parent Offset : %3.2f,%3.2f,%3.2f\n", pRB->offsetx, pRB->offsety, pRB->offsetz);
-//				IDtoName[pRB->ID] = pRB->szName;
+				IDtoName[pRB->ID] = pRB->szName;
 				IDtoPublisher[pRB->ID] = new stPub(pRB->szName, pRB->szName, 10);
 				
 
@@ -410,6 +410,11 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 
 	// Rigid Bodies
 	printf("Rigid Bodies [Count=%d]\n", data->nRigidBodies);
+	triangulator::beaconSetting bc;
+	triangulator::beaconSettings bs;
+	int beaconCount = 0;
+
+	
 	for (i = 0; i < data->nRigidBodies; i++)
 	{
 		geometry_msgs::PoseStamped ps;
@@ -460,7 +465,12 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 		
 		ps.header.frame_id = "map";
 
-		
+		bc.beaconName = IDtoName[ data->RigidBodies[i].ID  ] ;
+		bc.beaconID = 0;
+		bc.X = ps.pose.orientation.x;
+		bc.Y = ps.pose.orientation.y;
+		bc.Z = ps.pose.orientation.z;
+		bs.beaconValues.push_back(bc);
 
 		//ROSPubPose->publish(ps);
 
@@ -472,6 +482,7 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 			{
 
 				IDtoPublisher[data->RigidBodies[i].ID]->publisher.publish(ps);
+				
 				
 			}
 
@@ -499,6 +510,8 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 				data->RigidBodies[i].Markers[iMarker][2]);
 		}
 	}
+	//now am done with iterating through rigidbodes, so publish the beaconSet as one big gulp
+	beaconPublisher.publish(bs);
 
 	// skeletons
 	printf("Skeletons [Count=%d]\n", data->nSkeletons);
@@ -636,8 +649,10 @@ void StartROS()
 	//	CECommandClass command(ros::this_node::getName());
 
 
-
+	
 	n = new ros::NodeHandle();
+	beaconPublisher = n->advertise<triangulator::beaconSettings  >("beaconPublish", 10);
+	
 	//ROSPubPose = new 	ros::Publisher;
 	//*ROSPubPose = n->advertise<geometry_msgs::PoseStamped>("OPTI_POS", 100);
 
