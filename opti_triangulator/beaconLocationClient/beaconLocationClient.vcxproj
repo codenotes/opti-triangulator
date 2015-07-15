@@ -53,7 +53,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);$(ROS_LIST_PREPROC)</PreprocessorDefinitions>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>C:\Users\gbrill\source\repos\ROSIndigo2015\ROSIndigoDLL\ROSIndigoDLL\include\;$(ROS_LIST_INCLUDE_PATHS);$(BOOST_158_INCLUDE);$(ProjectDir)..\opti_triangulator\actionlibClient</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ROS_LIST_INCLUDE_PATHS);$(BOOST_158_INCLUDE);$(ProjectDir)..\opti_triangulator\actionlibClient;$(ROS_SHARED_SERVICE_INCLUDE)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
