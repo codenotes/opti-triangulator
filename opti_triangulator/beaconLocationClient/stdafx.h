@@ -10,5 +10,5 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <ros/ros.h>
-#include "..\opti_triangulator\actionlibClient\triangulator\beaconSettings.h"
+#include "triangulator\beaconSettings.h"
 // TODO: reference additional headers your program requires here

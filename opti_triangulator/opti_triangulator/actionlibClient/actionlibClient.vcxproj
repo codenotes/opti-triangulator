@@ -52,7 +52,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ROS_BUILD_SHARED_LIBS;BOOST_ALL_NO_LIB=1;WIN32;_DEBUG;_CONSOLE;_LIB;GREG1;ROSCPP_DEPRECATED=__declspec(deprecated);_SCL_SECURE_NO_WARNINGS;rosbag_EXPORTS;_CRT_SECURE_NO_WARNINGS;CONSOLE_BRIDGE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ROS_INCLUDES)\;$(ROS_INCLUDES)\message_traits;$(ROS_INCLUDES)\xmlrpc;$(ROS_INCLUDES)\roslib;$(ROS_INCLUDES)\tinyxml2;C:\include\indigo;$(ROS_INCLUDES)\legacy;$(ROS_INCLUDES)\msgs;$(ROS_INCLUDES)\yaml-cpp-0.5.1\include;$(ROS_INCLUDES)\bzip2-1.0.6;$(ROS_INCLUDES)\lz4;$(ROS_INCLUDES)\rosbag;$(ROS_INCLUDES);$(ProjectDir);$(BOOST_158_INCLUDE);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ROS_INCLUDES)\;$(ROS_INCLUDES)\message_traits;$(ROS_INCLUDES)\xmlrpc;$(ROS_INCLUDES)\roslib;$(ROS_INCLUDES)\tinyxml2;C:\include\indigo;$(ROS_INCLUDES)\legacy;$(ROS_INCLUDES)\msgs;$(ROS_INCLUDES)\yaml-cpp-0.5.1\include;$(ROS_INCLUDES)\bzip2-1.0.6;$(ROS_INCLUDES)\lz4;$(ROS_INCLUDES)\rosbag;$(ROS_INCLUDES);$(ProjectDir);$(BOOST_158_INCLUDE);$(ROS_SHARED_SERVICE_INCLUDE);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
       <AdditionalOptions>/Zm140 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
