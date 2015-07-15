@@ -35,6 +35,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	ros::ServiceClient client = n.serviceClient<triangulator::triangulatorCommand>("triangulatorCmd");//this is important as it is the name of the service we are looking for
 	triangulator::triangulatorCommand srv;
 
+	
+
 	ros::spin();
 
 	return 0;
