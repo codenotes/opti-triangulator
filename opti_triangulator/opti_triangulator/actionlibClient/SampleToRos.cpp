@@ -437,16 +437,6 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 		*/
 
 
-		printf("Rigid Body [ID=%d  Error=%3.2f  Valid=%d]\n", data->RigidBodies[i].ID, data->RigidBodies[i].MeanError, bTrackingValid);
-		printf("\tx\ty\tz\tqx\tqy\tqz\tqw\n");
-		printf("\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\n",
-			data->RigidBodies[i].x,
-			data->RigidBodies[i].y,
-			data->RigidBodies[i].z,
-			data->RigidBodies[i].qx,
-			data->RigidBodies[i].qy,
-			data->RigidBodies[i].qz,
-			data->RigidBodies[i].qw);
 
 		ps.pose.position.x = data->RigidBodies[i].x;
 		ps.pose.position.y = data->RigidBodies[i].y;//height
@@ -467,10 +457,25 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 
 		bc.beaconName = IDtoName[ data->RigidBodies[i].ID  ] ;
 		bc.beaconID = 0;
-		bc.X = ps.pose.orientation.x;
-		bc.Y = ps.pose.orientation.y;
-		bc.Z = ps.pose.orientation.z;
+		bc.X = ps.pose.position.x;
+		bc.Y = ps.pose.position.y;
+		bc.Z = ps.pose.position.z;
+		
 		bs.beaconValues.push_back(bc);
+
+
+		printf("@Rigid Body [ID=%d  Name=%s Error=%3.2f  Valid=%d]\n", data->RigidBodies[i].ID, bc.beaconName.c_str() , data->RigidBodies[i].MeanError, bTrackingValid);
+		printf("\tx\ty\tz\tqx\tqy\tqz\tqw\n");
+		printf("\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\n",
+			data->RigidBodies[i].x,
+			data->RigidBodies[i].y,
+			data->RigidBodies[i].z,
+			data->RigidBodies[i].qx,
+			data->RigidBodies[i].qy,
+			data->RigidBodies[i].qz,
+			data->RigidBodies[i].qw);
+
+
 
 		//ROSPubPose->publish(ps);
 
@@ -495,20 +500,20 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 
 
 
-		printf("\tRigid body markers [Count=%d]\n", data->RigidBodies[i].nMarkers);
-		for (int iMarker = 0; iMarker < data->RigidBodies[i].nMarkers; iMarker++)
-		{
-			printf("\t\t");
-			if (data->RigidBodies[i].MarkerIDs)
-				printf("MarkerID:%d", data->RigidBodies[i].MarkerIDs[iMarker]);
-			if (data->RigidBodies[i].MarkerSizes)
-				printf("\tMarkerSize:%3.2f", data->RigidBodies[i].MarkerSizes[iMarker]);
-			if (data->RigidBodies[i].Markers)
-				printf("\tMarkerPos:%3.2f,%3.2f,%3.2f\n",
-				data->RigidBodies[i].Markers[iMarker][0],
-				data->RigidBodies[i].Markers[iMarker][1],
-				data->RigidBodies[i].Markers[iMarker][2]);
-		}
+		//printf("\tRigid body markers [Count=%d]\n", data->RigidBodies[i].nMarkers);
+		//for (int iMarker = 0; iMarker < data->RigidBodies[i].nMarkers; iMarker++)
+		//{
+		//	printf("\t\t");
+		//	if (data->RigidBodies[i].MarkerIDs)
+		//		printf("MarkerID:%d", data->RigidBodies[i].MarkerIDs[iMarker]);
+		//	if (data->RigidBodies[i].MarkerSizes)
+		//		printf("\tMarkerSize:%3.2f", data->RigidBodies[i].MarkerSizes[iMarker]);
+		//	if (data->RigidBodies[i].Markers)
+		//		printf("\tMarkerPos:%3.2f,%3.2f,%3.2f\n",
+		//		data->RigidBodies[i].Markers[iMarker][0],
+		//		data->RigidBodies[i].Markers[iMarker][1],
+		//		data->RigidBodies[i].Markers[iMarker][2]);
+		//}
 	}
 	//now am done with iterating through rigidbodes, so publish the beaconSet as one big gulp
 	beaconPublisher.publish(bs);
@@ -546,15 +551,15 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 	bool bOccluded;     // marker was not visible (occluded) in this frame
 	bool bPCSolved;     // reported position provided by point cloud solve
 	bool bModelSolved;  // reported position provided by model solve
-	printf("Labeled Markers [Count=%d]\n", data->nLabeledMarkers);
+//	printf("Labeled Markers [Count=%d]\n", data->nLabeledMarkers);
 	for (i = 0; i < data->nLabeledMarkers; i++)
 	{
 		bOccluded = data->LabeledMarkers[i].params & 0x01;
 		bPCSolved = data->LabeledMarkers[i].params & 0x02;
 		bModelSolved = data->LabeledMarkers[i].params & 0x04;
 		sMarker marker = data->LabeledMarkers[i];
-		printf("Labeled Marker [ID=%d, Occluded=%d, PCSolved=%d, ModelSolved=%d] [size=%3.2f] [pos=%3.2f,%3.2f,%3.2f]\n",
-			marker.ID, bOccluded, bPCSolved, bModelSolved, marker.size, marker.x, marker.y, marker.z);
+//		printf("Labeled Marker [ID=%d, Occluded=%d, PCSolved=%d, ModelSolved=%d] [size=%3.2f] [pos=%3.2f,%3.2f,%3.2f]\n",
+//			marker.ID, bOccluded, bPCSolved, bModelSolved, marker.size, marker.x, marker.y, marker.z);
 	}
 
 }
