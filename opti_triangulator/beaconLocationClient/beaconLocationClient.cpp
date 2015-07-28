@@ -26,6 +26,7 @@ void beaconCallback(const triangulator::beaconSettings & msg)
 
 enum TriangulatorDSCommands { GET_LOCALIZATION = 6, GET_VOLTAGE = 3, SET_ENV_LIMITS = 15, SET_BEACON_LIST = 16 };
 
+#ifndef READANDDUMP
 int _tmain(int argc, _TCHAR* argv[])
 {
 
@@ -89,4 +90,4 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
-
+#endif

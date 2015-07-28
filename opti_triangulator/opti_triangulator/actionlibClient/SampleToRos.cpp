@@ -46,7 +46,7 @@ SampleClient [ServerIP] [LocalIP] [OutputFilename]
 
 #include <ros/ros.h>
 #include "triangulator/beaconSettings.h"
-
+#include "ColorCon.h"
 
 #pragma comment(lib,"wsock32")
 
@@ -58,6 +58,9 @@ ros::Publisher * ROSPubPose;
 ros::Publisher beaconPublisher;
 
 bool gbPublishersCreated = false; 
+
+ColorCon gPrintout1;
+
 
  class stPub
 {
@@ -108,6 +111,13 @@ FILE* fp;
 
 char szMyIPAddress[128] = "";
 char szServerIPAddress[128] = "";
+
+#pragma comment(lib, "ROSIndigoDLL.lib")
+#pragma comment(lib, "boost_system-vc140-mt-gd-1_58.lib")
+#pragma comment(lib, "boost_thread-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib,"boost_signals-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
+#pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -328,7 +338,7 @@ int CreateClient(int iConnectionType)
 
 	// Set callback handlers
 	theClient->SetMessageCallback(MessageHandler);
-	theClient->SetVerbosityLevel(Verbosity_Debug);
+	theClient->SetVerbosityLevel(Verbosity_None); //Verbosity_Debug);
 	theClient->SetDataCallback(DataHandler, theClient);	// this function will receive data from the server
 
 	// Init Client and connect to NatNet server
@@ -376,11 +386,12 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 
 	int i = 0;
 
-	printf("FrameID : %d\n", data->iFrame);
+	/*printf("FrameID! : %d\n", data->iFrame);
 	printf("Timestamp :  %3.2lf\n", data->fTimestamp);
 	printf("Latency :  %3.2lf\n", data->fLatency);
-
+*/
 	// FrameOfMocapData params
+	
 	bool bIsRecording = data->params & 0x01;
 	bool bTrackedModelsChanged = data->params & 0x02;
 	if (bIsRecording)
@@ -395,21 +406,24 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 	// decode to friendly string
 	char szTimecode[128] = "";
 	pClient->TimecodeStringify(data->Timecode, data->TimecodeSubframe, szTimecode, 128);
-	printf("Timecode : %s\n", szTimecode);
+	
+	
+	//printf("Timecode : %s\n", szTimecode);
 
 	// Other Markers
-	printf("Other Markers [Count=%d]\n", data->nOtherMarkers);
-	for (i = 0; i < data->nOtherMarkers; i++)
-	{
-		printf("Other Marker %d : %3.2f\t%3.2f\t%3.2f\n",
-			i,
-			data->OtherMarkers[i][0],
-			data->OtherMarkers[i][1],
-			data->OtherMarkers[i][2]);
-	}
+
+	//printf("Other Markers [Count=%d]\n", data->nOtherMarkers);
+	//for (i = 0; i < data->nOtherMarkers; i++)
+	//{
+	//	printf("Other Marker %d : %3.2f\t%3.2f\t%3.2f\n",
+	//		i,
+	//		data->OtherMarkers[i][0],
+	//		data->OtherMarkers[i][1],
+	//		data->OtherMarkers[i][2]);
+	//}
 
 	// Rigid Bodies
-	printf("Rigid Bodies [Count=%d]\n", data->nRigidBodies);
+	//printf("Rigid Bodies [Count=%d]\n", data->nRigidBodies);
 	triangulator::beaconSetting bc;
 	triangulator::beaconSettings bs;
 	int beaconCount = 0;
@@ -462,6 +476,22 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 		bc.Z = ps.pose.position.z;
 		
 		bs.beaconValues.push_back(bc);
+
+		//gPrintout1.sprintConsole(0, 2, FOREGROUND_GREEN,
+		//	"@Rigid Body [ID=%d  Name=%s Error=%3.2f  Valid=%d]", 
+		//	data->RigidBodies[i].ID, bc.beaconName.c_str() , data->RigidBodies[i].MeanError, bTrackingValid);
+			
+		//printf("\tx\ty\tz\tqx\tqy\tqz\tqw\n"
+			
+		/*gPrintout1.sprintConsole(0, i+1, FOREGROUND_GREEN,
+		"\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f",
+			data->RigidBodies[i].x,
+			data->RigidBodies[i].y,
+			data->RigidBodies[i].z,
+			data->RigidBodies[i].qx,
+			data->RigidBodies[i].qy,
+			data->RigidBodies[i].qz,
+			data->RigidBodies[i].qw);*/
 
 
 		printf("@Rigid Body [ID=%d  Name=%s Error=%3.2f  Valid=%d]\n", data->RigidBodies[i].ID, bc.beaconName.c_str() , data->RigidBodies[i].MeanError, bTrackingValid);
@@ -519,7 +549,7 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 	beaconPublisher.publish(bs);
 
 	// skeletons
-	printf("Skeletons [Count=%d]\n", data->nSkeletons);
+	//printf("Skeletons [Count=%d]\n", data->nSkeletons);
 	for (i = 0; i < data->nSkeletons; i++)
 	{
 		sSkeletonData skData = data->Skeletons[i];

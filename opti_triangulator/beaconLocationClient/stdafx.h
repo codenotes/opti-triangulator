@@ -12,3 +12,4 @@
 #include <ros/ros.h>
 #include "triangulator\beaconSettings.h"
 // TODO: reference additional headers your program requires here
+#define READANDDUMP
