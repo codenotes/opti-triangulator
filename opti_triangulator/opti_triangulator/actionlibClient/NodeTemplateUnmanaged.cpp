@@ -46,6 +46,7 @@
 #pragma comment(lib, "ROSIndigoDLL.lib")
 #pragma comment(lib, "boost_system-vc140-mt-gd-1_58.lib")
 #pragma comment(lib, "boost_thread-vc140-mt-gd-1_58.lib")
+
 //#pragma comment(lib,"boost_signals-vc140-mt-gd-1_58.lib")
 //#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
 #pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
@@ -150,7 +151,7 @@ void SendCommand(std::string cmd, Client &client)
 
 }
 
-
+#if 0
 int _tmain_(int argc, _TCHAR* argv[])
 {
 	
@@ -197,4 +198,4 @@ int _tmain_(int argc, _TCHAR* argv[])
 	//SerializeROSMessage<dynamic_reconfigure::Config>(config);
 
 }
-
+#endif
