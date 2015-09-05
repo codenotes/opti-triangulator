@@ -264,7 +264,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	float biggestX=0, biggestY=0;
 
-
+ 
 	printf("received from mocap:\n");
 	//now beaconfile
 	fprintf(fb, "/data\n");
