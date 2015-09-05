@@ -470,7 +470,17 @@ void __cdecl DataHandler(sFrameOfMocapData* data, void* pUserData)
 		ps.header.frame_id = "map";
 
 		bc.beaconName = IDtoName[ data->RigidBodies[i].ID  ] ;
-		bc.beaconID = 0;
+		
+		try
+		{
+			bc.beaconID =boost::lexical_cast<float>( &(bc.beaconName.c_str()[1]) ); //was 0, but I think this is useful
+		}
+		catch (...)
+		{
+			bc.beaconID = 0.0f;
+		}
+		
+		
 		bc.X = ps.pose.position.x;
 		bc.Y = ps.pose.position.y;
 		bc.Z = ps.pose.position.z;
