@@ -112,12 +112,12 @@ FILE* fp;
 char szMyIPAddress[128] = "";
 char szServerIPAddress[128] = "";
 
-#pragma comment(lib, "ROSIndigoDLL.lib")
-#pragma comment(lib, "boost_system-vc140-mt-gd-1_58.lib")
-#pragma comment(lib, "boost_thread-vc140-mt-gd-1_58.lib")
-//#pragma comment(lib,"boost_signals-vc140-mt-gd-1_58.lib")
-//#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
-#pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib, "ROSIndigoDLL.lib")
+//#pragma comment(lib, "boost_system-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib, "boost_thread-vc140-mt-gd-1_58.lib")
+////#pragma comment(lib,"boost_signals-vc140-mt-gd-1_58.lib")
+////#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {

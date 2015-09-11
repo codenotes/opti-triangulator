@@ -43,13 +43,12 @@
 #include "triangulator/beaconSettings.h"
 
 //const double tf::Transformer::DEFAULT_CACHE_TIME = 10.0;
-#pragma comment(lib, "ROSIndigoDLL.lib")
-#pragma comment(lib, "boost_system-vc140-mt-gd-1_58.lib")
-#pragma comment(lib, "boost_thread-vc140-mt-gd-1_58.lib")
-
-//#pragma comment(lib,"boost_signals-vc140-mt-gd-1_58.lib")
-//#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
-#pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib, "ROSIndigoDLL.lib")
+//#pragma comment(lib, "boost_system-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib, "boost_thread-vc140-mt-gd-1_58.lib")
+////#pragma comment(lib,"boost_signals-vc140-mt-gd-1_58.lib")
+////#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
+//#pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
 //#pragma comment(lib,"boost_filesystem-vc140-mt-gd-1_58.lib")
 
 

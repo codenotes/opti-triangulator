@@ -243,8 +243,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<beaconSetting> unknowns;
 	
 	/**these are real measured settings done with a meter*/
-	cf.calcThird(b8, 1, 5.26, 5, 6.02);
-	cf.calcThird(b7, 1, 7.59, 5, 6.49);
+	cf.calcThird(b8, 1, 6.21, 6, 5.54);
+	cf.calcThird(b7, 1, 8.99, 6, 6.37);
 
 	unknowns.push_back(b7);
 	unknowns.push_back(b8);
