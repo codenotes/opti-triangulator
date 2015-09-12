@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opti_triangulator", "opti_triangulator\opti_triangulator.vcxproj", "{68758B27-66B2-41D5-B6CE-3EC05A5024C5}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MotiveBroadcaster", "opti_triangulator\actionlibClient\actionlibClient.vcxproj", "{D045E2BB-1996-42CC-983D-72182A0B8532}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "beaconLocationClient", "beaconLocationClient\beaconLocationClient.vcxproj", "{CD73E283-FF44-4A11-96B3-6BD529916925}"
@@ -15,18 +13,12 @@ Global
 		Dbg-64-2013|x64 = Dbg-64-2013|x64
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		Rel-64-2913|Win32 = Rel-64-2913|Win32
+		Rel-64-2913|x64 = Rel-64-2913|x64
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Dbg-64-2013|Win32.ActiveCfg = Debug|Win32
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Dbg-64-2013|x64.ActiveCfg = Debug|Win32
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Debug|Win32.ActiveCfg = Debug|Win32
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Debug|Win32.Build.0 = Debug|Win32
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Debug|x64.ActiveCfg = Debug|Win32
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Release|Win32.ActiveCfg = Release|Win32
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Release|Win32.Build.0 = Release|Win32
-		{68758B27-66B2-41D5-B6CE-3EC05A5024C5}.Release|x64.ActiveCfg = Release|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Dbg-64-2013|Win32.ActiveCfg = Dbg-64-2013|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Dbg-64-2013|Win32.Build.0 = Dbg-64-2013|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Dbg-64-2013|x64.ActiveCfg = Dbg-64-2013|x64
@@ -35,6 +27,10 @@ Global
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Debug|Win32.Build.0 = Debug|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Debug|x64.ActiveCfg = Debug|x64
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Debug|x64.Build.0 = Debug|x64
+		{D045E2BB-1996-42CC-983D-72182A0B8532}.Rel-64-2913|Win32.ActiveCfg = Rel-64-2913|Win32
+		{D045E2BB-1996-42CC-983D-72182A0B8532}.Rel-64-2913|Win32.Build.0 = Rel-64-2913|Win32
+		{D045E2BB-1996-42CC-983D-72182A0B8532}.Rel-64-2913|x64.ActiveCfg = Rel-64-2913|x64
+		{D045E2BB-1996-42CC-983D-72182A0B8532}.Rel-64-2913|x64.Build.0 = Rel-64-2913|x64
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Release|Win32.ActiveCfg = Release|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Release|Win32.Build.0 = Release|Win32
 		{D045E2BB-1996-42CC-983D-72182A0B8532}.Release|x64.ActiveCfg = Release|x64
@@ -47,6 +43,10 @@ Global
 		{CD73E283-FF44-4A11-96B3-6BD529916925}.Debug|Win32.Build.0 = Debug|Win32
 		{CD73E283-FF44-4A11-96B3-6BD529916925}.Debug|x64.ActiveCfg = Debug|x64
 		{CD73E283-FF44-4A11-96B3-6BD529916925}.Debug|x64.Build.0 = Debug|x64
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Rel-64-2913|Win32.ActiveCfg = Rel-64-2913|Win32
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Rel-64-2913|Win32.Build.0 = Rel-64-2913|Win32
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Rel-64-2913|x64.ActiveCfg = Rel-64-2913|x64
+		{CD73E283-FF44-4A11-96B3-6BD529916925}.Rel-64-2913|x64.Build.0 = Rel-64-2913|x64
 		{CD73E283-FF44-4A11-96B3-6BD529916925}.Release|Win32.ActiveCfg = Release|Win32
 		{CD73E283-FF44-4A11-96B3-6BD529916925}.Release|Win32.Build.0 = Release|Win32
 		{CD73E283-FF44-4A11-96B3-6BD529916925}.Release|x64.ActiveCfg = Release|x64

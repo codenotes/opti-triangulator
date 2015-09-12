@@ -41,7 +41,7 @@ SampleClient [ServerIP] [LocalIP] [OutputFilename]
 #include "include/NatNetTypes.h"
 #include "include/NatNetClient.h"
 
-#include "posestamped.h"
+#include "geometry_msgs/PoseStamped.h"
 #include <map>
 
 #include <ros/ros.h>
@@ -119,12 +119,51 @@ char szServerIPAddress[128] = "";
 ////#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
 //#pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
 
+#define TEST_MODE
+
+#include "std_msgs/String.h"
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	int iResult;
 	int iConnectionType = ConnectionType_Multicast;
 	//int iConnectionType = ConnectionType_Unicast;
 	StartROS();
+
+
+
+
+#ifdef TEST_MODE
+
+	geometry_msgs::PoseStamped ps;
+
+	std_msgs::String s;
+	s.data = "hi there";
+
+	auto n = new ros::NodeHandle();
+	//auto pub = n->advertise<geometry_msgs::PoseStamped>("testpose", 10);
+	auto pub = n->advertise<std_msgs::String>("teststring", 10);
+
+	ROS_INFO("this should print");
+
+	ROS_DEBUG_NAMED("interop", "this hsould also");
+
+	while (ros::ok())
+	{
+//		ps.pose.position.x += 1;
+	//	pub.publish(ps);
+	//	printf("publish %f\n", ps.pose.position.x);
+		pub.publish(s);
+		
+
+		ros::Duration(.2).sleep();
+
+	}
+
+
+	return 0;
+#endif
+
 
 	// parse command line args
 	if (argc>1)
@@ -684,6 +723,7 @@ void StartROS()
 
 	ros::init(argc, (char**)c, "OPTI_ROS");
 
+#ifndef TEST_MODE
 	//ros::init(argc, argv, "CECommand_server");
 
 	if (ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Info))
@@ -697,7 +737,9 @@ void StartROS()
 	
 	n = new ros::NodeHandle();
 	beaconPublisher = n->advertise<triangulator::beaconSettings  >("beaconPublish", 10);
-	
+
+#endif
+
 	//ROSPubPose = new 	ros::Publisher;
 	//*ROSPubPose = n->advertise<geometry_msgs::PoseStamped>("OPTI_POS", 100);
 
