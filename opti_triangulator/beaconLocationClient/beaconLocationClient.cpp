@@ -5,7 +5,6 @@
 #include "triangulator/beaconSettings.h"
 #include "triangulator/triangulatorCommand.h"
 
-#pragma comment(lib, "ROSIndigoDLL.lib")
 
 using namespace triangulator;
 triangulator::beaconSettings gBeaconSettings;

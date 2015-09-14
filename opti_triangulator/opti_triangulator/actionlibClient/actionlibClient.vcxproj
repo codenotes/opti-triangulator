@@ -232,18 +232,21 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>ROS_BUILD_SHARED_LIBS;WIN32;_DEBUG;_CONSOLE;_LIB;GREG1;ROSCPP_DEPRECATED=__declspec(deprecated);_SCL_SECURE_NO_WARNINGS;rosbag_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>BOOST_LIB_DIAGNOSTIC;ROS_BUILD_SHARED_LIBS;WIN32;NDEBUG;_CONSOLE;_LIB;GREG1;ROSCPP_DEPRECATED=__declspec(deprecated);_SCL_SECURE_NO_WARNINGS;rosbag_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>$(ROS_JADE_INCLUDE_PATHS);$(BOOST_158_INCLUDE);</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
       <AdditionalOptions>/Zm140 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies);rosjadecpp-r-2013.lib;boost_system-vc120-mt-1_58.lib;boost_thread-vc120-mt-1_58.lib;boost_signals-vc120-mt-1_58.lib;boost_program_options-vc120-mt-1_58.lib;boost_regex-vc120-mt-1_58.lib;boost_filesystem-vc120-mt-1_58.lib;C:\include\NatNetSDK\lib\x64\NatNetLib.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ROS_LIST_LINK_PATHS);$(BOOST_158_64_LIB_2013)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);C:\Users\Greg\Source\Repos\Jade\ros_comm\clients\roscpp\rosjadecpp\x64\Rel-64-2013\rosjadecpp-r-2013.lib;C:\include\NatNetSDK\lib\x64\NatNetLib.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(BOOST_158_64_LIB_2013)</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

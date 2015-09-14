@@ -19,7 +19,7 @@ using namespace triangulator;
 
 struct findThird
 {
-	bool biasPositive = true; //decides whether to get positive or negative solution...
+	bool biasPositive = false; //decides whether to get positive or negative solution...
 
 	triangulator::beaconSettings::ConstPtr _pb;
 
@@ -242,9 +242,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	b8.Z = 1.88f;
 	vector<beaconSetting> unknowns;
 	
+	//YOUR SETTINGS HERE!!!
 	/**these are real measured settings done with a meter*/
-	cf.calcThird(b8, 1, 6.21, 6, 5.54);
-	cf.calcThird(b7, 1, 8.99, 6, 6.37);
+	cf.calcThird(b8, 5, 8.85, 6, 5.53);
+	cf.calcThird(b7, 5, 10.9, 6, 6.78);
 
 	unknowns.push_back(b7);
 	unknowns.push_back(b8);

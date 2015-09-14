@@ -212,15 +212,18 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);$(ROS_LIST_PREPROC)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);BUILD_SHARED_LIBS=ON;CONSOLE_BRIDGE_STATIC;ROS_BUILD_SHARED_LIBS</PreprocessorDefinitions>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
       <AdditionalIncludeDirectories>$(ROS_LIST_INCLUDE_PATHS);$(BOOST_158_INCLUDE)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ROS_LIST_LINK_PATHS)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\Greg\Source\Repos\Jade\ros_comm\clients\roscpp\rosjadecpp\x64\Rel-64-2013\rosjadecpp-r-2013.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dbg-64-2013|x64'">
@@ -231,12 +234,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);$(ROS_LIST_PREPROC)</PreprocessorDefinitions>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>$(ROS_LIST_INCLUDE_PATHS);$(BOOST_158_INCLUDE)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ROS_JADE_INCLUDE_PATHS);$(BOOST_158_INCLUDE)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ROS_LIST_LINK_PATHS)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\Greg\Source\Repos\Jade\ros_comm\clients\roscpp\rosjadecpp\x64\Dbg-2013\rosjadecpp-d-2013.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -119,7 +119,7 @@ char szServerIPAddress[128] = "";
 ////#pragma comment(lib,"boost_program_options-vc140-mt-gd-1_58.lib")
 //#pragma comment(lib,"boost_regex-vc140-mt-gd-1_58.lib")
 
-#define TEST_MODE
+//#define TEST_MODE
 
 #include "std_msgs/String.h"
 
