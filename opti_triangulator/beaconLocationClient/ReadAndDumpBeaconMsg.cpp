@@ -313,10 +313,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("\n");
 */
 	printf("environment file (calculated):\n");
-	printf("/data\nf%f\tf%f\nf%f\tf%f\nf%f\tf%f", biggestX + BOUNDARY_BUFFER, biggestX*-1 - BOUNDARY_BUFFER, biggestY + BOUNDARY_BUFFER, biggestY*-1 - BOUNDARY_BUFFER, 0.0f, 3.0f);
+	printf("/data\nf%f\tf%f\nf%f\tf%f\nf%f\tf%f", biggestX*-1 + BOUNDARY_BUFFER, biggestX - BOUNDARY_BUFFER, biggestY*-1 + BOUNDARY_BUFFER, biggestY - BOUNDARY_BUFFER, 0.0f, 3.0f);
 	printf("\n");
 	printf("/end_data\n");
-	fprintf(fe,"/data\nf%f\tf%f\nf%f\tf%f\nf%f\tf%f", biggestX + BOUNDARY_BUFFER, biggestX*-1 - BOUNDARY_BUFFER, biggestY + BOUNDARY_BUFFER, biggestY*-1 - BOUNDARY_BUFFER, 0.0f, 3.0f);
+	fprintf(fe,"/data\nf%f\tf%f\nf%f\tf%f\nf%f\tf%f", biggestX*-1 + BOUNDARY_BUFFER, biggestX - BOUNDARY_BUFFER, biggestY*-1 + BOUNDARY_BUFFER, biggestY - BOUNDARY_BUFFER, 0.0f, 3.0f);
 	fprintf(fe, "\n/end_data");
 	printf("\n");
 
